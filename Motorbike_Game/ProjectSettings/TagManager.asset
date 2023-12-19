@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Vehicle
+  - Coin
+  - Fuel
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Road1
+    uniqueID: 1454818075
+    locked: 0
+  - name: Road2
+    uniqueID: 654684469
+    locked: 0
   - name: Vehicles
     uniqueID: 3253389729
+    locked: 0
+  - name: Player
+    uniqueID: 2335539713
     locked: 0

@@ -6,35 +6,115 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _StrafeSpeed;
+    [SerializeField] private Animator _Animator;
+    [SerializeField] private GameSessionManager _GameSessionManager;
+    private float _OpponentSpeed;
+    private float _IncreasingSpeed;
+    private bool _ThrottlePermitted;
 
-    private void Update() 
-    {
-        movement();
+    private void Start() {
+        _GameSessionManager = GameObject.Find("GameSessionManager").GetComponent<GameSessionManager>();
+        _OpponentSpeed = _GameSessionManager.GetVehicleSpeed();
+        _ThrottlePermitted = true;
     }
 
-    private void movement()
+    private void FixedUpdate() 
+    {
+        Movement();
+        FuelSystem();
+    }
+
+    private void Movement()
     {
         Vector3 _Position = transform.position;
+        Vector3 _Rotation = transform.localEulerAngles;
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            _Position.x += _StrafeSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _Position.x -= _StrafeSpeed * Time.deltaTime;
-        }
+        Vector3 _RightRaycastOffset = new Vector3(transform.position.x + .5f, transform.position.y, transform.position.z);
+        Vector3 _LeftRaycastOffset = new Vector3(transform.position.x - .5f, transform.position.y, transform.position.z);
 
-        if (_Position.x > 1.25f)
+
+        if (!_ThrottlePermitted){return;}
+
+        if (Input.GetKey(KeyCode.Space))
         {
-            _Position.x = 1.25f;
+            _Animator.SetBool("Wheelie", true);
+
+            _IncreasingSpeed = (_IncreasingSpeed + 50);
+            _GameSessionManager.SetVehicleSpeed(_IncreasingSpeed);
+            
+            _Rotation.z = 0f;
         }
-        if (_Position.x < -1.25f)
+        else
         {
-            _Position.x = -1.25f;
+            _Animator.SetBool("Wheelie", false);
+
+            if (_GameSessionManager.GetVehicleSpeed() > _OpponentSpeed)
+            {
+                _IncreasingSpeed = (_IncreasingSpeed - 50);
+                _GameSessionManager.SetVehicleSpeed(_IncreasingSpeed);
+            }
+            else
+            {
+                _GameSessionManager.SetVehicleSpeed(_OpponentSpeed);
+                _IncreasingSpeed = _OpponentSpeed;
+            }
+
+
+            if (Input.GetKey(KeyCode.A) && RoadRaycast(_LeftRaycastOffset))
+            {
+                _Position.x += _StrafeSpeed * Time.deltaTime;
+                _Rotation.z = -15f;
+            }
+            else if (Input.GetKey(KeyCode.D) && RoadRaycast(_RightRaycastOffset))
+            {
+                _Position.x -= _StrafeSpeed * Time.deltaTime;
+                _Rotation.z = 15f;
+            }
+            else
+            {
+                _Rotation.z = 0f;
+            }
         }
 
         transform.position = _Position;
+        transform.localEulerAngles = _Rotation;
+    }
+
+    private void FuelSystem()
+    {
+        float _CurrentFuel = _GameSessionManager.GetFuel();
+
+        if (_CurrentFuel < .1f)
+        {
+            // Present warning to player
+        }
+        if (_CurrentFuel <= 0)
+        {
+            _ThrottlePermitted = false;
+            _GameSessionManager.SetFuel(0f);
+        }
+        else
+        {
+            _ThrottlePermitted = true;
+        }
+
+        _GameSessionManager.SetFuel(_CurrentFuel -.1f * Time.deltaTime);
+    }
+
+    private bool RoadRaycast(Vector3 offset)
+    {
+        RaycastHit _Hit;
+
+        if (Physics.Raycast(transform.position + offset, Vector3.down, out _Hit))
+        {
+            if (_Hit.collider.gameObject.tag == "Ground")
+            {
+                Debug.Log("Ground found");
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -42,6 +122,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Vehicle")
         {
             Time.timeScale = 0;
+        }
+        if (other.gameObject.tag == "Coin")
+        {
+            _GameSessionManager.IncreaseScore(1f);
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Fuel")
+        {
+            _GameSessionManager.SetFuel(1f);
+            Destroy(other.gameObject);
         }
     }
 }
