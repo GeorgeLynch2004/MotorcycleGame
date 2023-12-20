@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 31866479}
   - component: {fileID: 31866477}
   - component: {fileID: 31866476}
+  - component: {fileID: 31866481}
+  - component: {fileID: 31866480}
   m_Layer: 0
   m_Name: Fuel (2)
   m_TagString: Untagged
@@ -251,6 +253,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &31866480
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31866474}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 6
+  m_CollisionDetection: 2
+--- !u!114 &31866481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31866474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6001369a90e7e714e9c246810a9b5972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _VehicleSpeed: 0
+  _RigidBody: {fileID: 31866480}
+  _GameSessionManager: {fileID: 0}
 --- !u!1 &316367688
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +306,7 @@ GameObject:
   - component: {fileID: 316367690}
   - component: {fileID: 316367689}
   - component: {fileID: 316367691}
+  - component: {fileID: 316367692}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -284,6 +329,7 @@ MonoBehaviour:
   _StrafeSpeed: 3.5
   _Animator: {fileID: 737563153}
   _GameSessionManager: {fileID: 0}
+  _Graphics: {fileID: 737563150}
 --- !u!4 &316367690
 Transform:
   m_ObjectHideFlags: 0
@@ -293,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 316367688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 21.55}
+  m_LocalPosition: {x: 0, y: 0.2, z: 21.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -327,6 +373,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 2
+--- !u!65 &316367692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316367688}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32, y: 0.57, z: 0.07}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &338988097
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +664,8 @@ GameObject:
   - component: {fileID: 438145011}
   - component: {fileID: 438145009}
   - component: {fileID: 438145008}
+  - component: {fileID: 438145013}
+  - component: {fileID: 438145012}
   m_Layer: 0
   m_Name: Fuel (1)
   m_TagString: Untagged
@@ -713,6 +782,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &438145012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438145006}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 6
+  m_CollisionDetection: 2
+--- !u!114 &438145013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438145006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6001369a90e7e714e9c246810a9b5972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _VehicleSpeed: 0
+  _RigidBody: {fileID: 438145012}
+  _GameSessionManager: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +927,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737563150}
-  - component: {fileID: 737563151}
   - component: {fileID: 737563152}
   - component: {fileID: 737563153}
   m_Layer: 0
@@ -841,27 +951,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 316367690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &737563151
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737563149}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.12, y: 0.1, z: 0.01}
-  m_Center: {x: 0, y: -0.06, z: 0}
 --- !u!212 &737563152
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1372,6 +1461,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1454,6 +1544,20 @@ Transform:
   - {fileID: 371141539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 4.31, y: 180, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac6e3050d611d14e971561e8748d518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CameraPositionOffset: {x: 0, y: 0.42, z: 1.83}
+  _CameraRotationOffset: {x: 3.71, y: 180, z: 0}
 --- !u!1 &1221740859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221740860}
   - component: {fileID: 1221740861}
-  - component: {fileID: 1221740863}
+  - component: {fileID: 1221740862}
   m_Layer: 0
   m_Name: Road
   m_TagString: Ground
@@ -1511,7 +1615,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &1221740863
+--- !u!65 &1221740862
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1530,7 +1634,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.93, y: 0.13, z: 195}
+  m_Size: {x: 4.09, y: 0.17, z: 193.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1553083867
 GameObject:
@@ -1542,6 +1646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553083868}
   - component: {fileID: 1553083869}
+  - component: {fileID: 1553083870}
   m_Layer: 0
   m_Name: Road (2)
   m_TagString: Ground
@@ -1557,13 +1662,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553083867}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.69672453, y: -0.11835958, z: -0.10940581, w: 0.6989967}
-  m_LocalPosition: {x: -0.411, y: -0.437, z: 1.321}
-  m_LocalScale: {x: -1.8213551, y: 7.4060645, z: 0.87755}
+  m_LocalRotation: {x: -0.705239, y: -0.0455178, z: -0.036376785, w: 0.70657116}
+  m_LocalPosition: {x: -0.402, y: -0.439, z: 3.234}
+  m_LocalScale: {x: -1.8213551, y: 18.837324, z: 0.87755}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1820667046}
-  m_LocalEulerAnglesHint: {x: -89.252, y: -85.029, z: 66.493}
+  m_LocalEulerAnglesHint: {x: -89.251, y: -85.028, z: 78.388}
 --- !u!212 &1553083869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1616,6 +1721,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1553083870
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553083867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3200001, y: 0.32000008, z: 0.04}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0.000000033527613}
 --- !u!1 &1579416677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579416678}
   - component: {fileID: 1579416679}
+  - component: {fileID: 1579416680}
   m_Layer: 0
   m_Name: Road (3)
   m_TagString: Ground
@@ -1641,13 +1768,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579416677}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16936609, y: -0.68611187, z: -0.68462515, w: 0.17847693}
-  m_LocalPosition: {x: -0.585, y: -0.436, z: -1.207}
-  m_LocalScale: {x: 1.821355, y: -7.406065, z: -0.87755}
+  m_LocalRotation: {x: -0.04885718, y: -0.7050159, z: -0.70511806, w: 0.058087952}
+  m_LocalPosition: {x: -0.58, y: -0.44, z: -3.67}
+  m_LocalScale: {x: 1.821355, y: -21.712687, z: -0.87755}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1820667046}
-  m_LocalEulerAnglesHint: {x: -89.252, y: -85.029, z: -66.493}
+  m_LocalEulerAnglesHint: {x: -89.253, y: -85.029, z: -86.297}
 --- !u!212 &1579416679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1700,6 +1827,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1579416680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579416677}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32000002, y: 0.32, z: 0.04}
+  m_Center: {x: 0, y: 0.000000059604645, z: -0.00000002142042}
 --- !u!1 &1624799886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624799887}
   - component: {fileID: 1624799888}
+  - component: {fileID: 1624799889}
   m_Layer: 0
   m_Name: Road (1)
   m_TagString: Ground
@@ -1784,6 +1933,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1624799889
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624799886}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32000002, y: 0.32000008, z: 0.04}
+  m_Center: {x: 0, y: 0, z: -0.000000006344635}
 --- !u!1 &1710278878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2316,8 @@ GameObject:
   - component: {fileID: 3741978598848399058}
   - component: {fileID: 1109696475511537727}
   - component: {fileID: 6497133599680782035}
+  - component: {fileID: 8324884204293606427}
+  - component: {fileID: 8324884204293606426}
   m_Layer: 0
   m_Name: Fuel
   m_TagString: Untagged
@@ -2153,6 +2325,48 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &8324884204293606426
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324884204293606425}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 6
+  m_CollisionDetection: 2
+--- !u!114 &8324884204293606427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324884204293606425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6001369a90e7e714e9c246810a9b5972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _VehicleSpeed: 0
+  _RigidBody: {fileID: 8324884204293606426}
+  _GameSessionManager: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

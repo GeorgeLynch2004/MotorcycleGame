@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _StrafeSpeed;
     [SerializeField] private Animator _Animator;
     [SerializeField] private GameSessionManager _GameSessionManager;
+    [SerializeField] private Transform _Graphics;
     private float _OpponentSpeed;
     private float _IncreasingSpeed;
     private bool _ThrottlePermitted;
+
 
     private void Start() {
         _GameSessionManager = GameObject.Find("GameSessionManager").GetComponent<GameSessionManager>();
@@ -27,11 +29,7 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         Vector3 _Position = transform.position;
-        Vector3 _Rotation = transform.localEulerAngles;
-
-        Vector3 _RightRaycastOffset = new Vector3(transform.position.x + .5f, transform.position.y, transform.position.z);
-        Vector3 _LeftRaycastOffset = new Vector3(transform.position.x - .5f, transform.position.y, transform.position.z);
-
+        Vector3 _Rotation = _Graphics.localEulerAngles;
 
         if (!_ThrottlePermitted){return;}
 
@@ -60,12 +58,12 @@ public class Player : MonoBehaviour
             }
 
 
-            if (Input.GetKey(KeyCode.A) && RoadRaycast(_LeftRaycastOffset))
+            if (Input.GetKey(KeyCode.A) && RoadRaycast(.2f))
             {
                 _Position.x += _StrafeSpeed * Time.deltaTime;
                 _Rotation.z = -15f;
             }
-            else if (Input.GetKey(KeyCode.D) && RoadRaycast(_RightRaycastOffset))
+            else if (Input.GetKey(KeyCode.D) && RoadRaycast(-.2f))
             {
                 _Position.x -= _StrafeSpeed * Time.deltaTime;
                 _Rotation.z = 15f;
@@ -77,7 +75,7 @@ public class Player : MonoBehaviour
         }
 
         transform.position = _Position;
-        transform.localEulerAngles = _Rotation;
+        _Graphics.localEulerAngles = _Rotation;
     }
 
     private void FuelSystem()
@@ -98,22 +96,24 @@ public class Player : MonoBehaviour
             _ThrottlePermitted = true;
         }
 
-        _GameSessionManager.SetFuel(_CurrentFuel -.1f * Time.deltaTime);
+        _GameSessionManager.SetFuel(_CurrentFuel -.01f * Time.deltaTime);
     }
 
-    private bool RoadRaycast(Vector3 offset)
+    private bool RoadRaycast(float offset)
     {
         RaycastHit _Hit;
 
-        if (Physics.Raycast(transform.position + offset, Vector3.down, out _Hit))
+        if (Physics.Raycast(new Vector3(transform.position.x + offset, transform.position.y, transform.position.z), Vector3.down, out _Hit))
         {
-            if (_Hit.collider.gameObject.tag == "Ground")
+            if (_Hit.collider.CompareTag("Ground"))
             {
                 Debug.Log("Ground found");
+                Debug.DrawRay(new Vector3(transform.position.x + offset, transform.position.y, transform.position.z), Vector3.down, Color.green);
                 return true;
             }
         }
 
+        Debug.DrawRay(new Vector3(transform.position.x + offset, transform.position.y, transform.position.z), Vector3.down, Color.red);
         return false;
     }
 
