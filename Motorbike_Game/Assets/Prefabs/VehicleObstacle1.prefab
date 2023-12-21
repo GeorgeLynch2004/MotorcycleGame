@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7146508966149944208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _VehicleSpeed: 5000
   _RigidBody: {fileID: 8005726537249957008}
+  _GameSessionManager: {fileID: 0}
 --- !u!1 &9022077689148434377
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +222,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1041577567
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1053616350, guid: 922d45d6fecc60e4fa2508095585812d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

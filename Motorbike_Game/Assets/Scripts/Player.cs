@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private float _IncreasingSpeed;
     private bool _ThrottlePermitted;
 
-
     private void Start() {
         _GameSessionManager = GameObject.Find("GameSessionManager").GetComponent<GameSessionManager>();
         _OpponentSpeed = _GameSessionManager.GetVehicleSpeed();
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour
         {
             _Animator.SetBool("Wheelie", true);
 
-            _IncreasingSpeed = (_IncreasingSpeed + 50);
+            _IncreasingSpeed = (_IncreasingSpeed + 300 * Time.deltaTime);
             _GameSessionManager.SetVehicleSpeed(_IncreasingSpeed);
             
             _Rotation.z = 0f;
@@ -46,24 +45,24 @@ public class Player : MonoBehaviour
         {
             _Animator.SetBool("Wheelie", false);
 
-            if (_GameSessionManager.GetVehicleSpeed() > _OpponentSpeed)
+            if (_GameSessionManager.GetVehicleSpeed() > _GameSessionManager.GetBaseSpeed())
             {
-                _IncreasingSpeed = (_IncreasingSpeed - 50);
+                _IncreasingSpeed = (_IncreasingSpeed - 300 * Time.deltaTime);
                 _GameSessionManager.SetVehicleSpeed(_IncreasingSpeed);
             }
             else
             {
-                _GameSessionManager.SetVehicleSpeed(_OpponentSpeed);
-                _IncreasingSpeed = _OpponentSpeed;
+                _GameSessionManager.SetVehicleSpeed(_GameSessionManager.GetBaseSpeed());
+                _IncreasingSpeed = _GameSessionManager.GetBaseSpeed();
             }
 
 
-            if (Input.GetKey(KeyCode.A) && RoadRaycast(.2f))
+            if (Input.GetKey(KeyCode.A) && RoadRaycast(.5f))
             {
                 _Position.x += _StrafeSpeed * Time.deltaTime;
                 _Rotation.z = -15f;
             }
-            else if (Input.GetKey(KeyCode.D) && RoadRaycast(-.2f))
+            else if (Input.GetKey(KeyCode.D) && RoadRaycast(-.5f))
             {
                 _Position.x -= _StrafeSpeed * Time.deltaTime;
                 _Rotation.z = 15f;
@@ -72,6 +71,12 @@ public class Player : MonoBehaviour
             {
                 _Rotation.z = 0f;
             }
+
+            if (!RoadRaycast(.5f) && !RoadRaycast(-.5f))
+            {
+                _Position.y -= 3 * Time.deltaTime;
+            }
+
         }
 
         transform.position = _Position;
@@ -82,10 +87,6 @@ public class Player : MonoBehaviour
     {
         float _CurrentFuel = _GameSessionManager.GetFuel();
 
-        if (_CurrentFuel < .1f)
-        {
-            // Present warning to player
-        }
         if (_CurrentFuel <= 0)
         {
             _ThrottlePermitted = false;
@@ -121,7 +122,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Vehicle")
         {
-            Time.timeScale = 0;
+            _GameSessionManager.GameOver();
         }
         if (other.gameObject.tag == "Coin")
         {

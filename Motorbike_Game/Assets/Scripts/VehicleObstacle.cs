@@ -6,7 +6,7 @@ public class VehicleObstacle : MonoBehaviour
 {
     [SerializeField] private float _VehicleSpeed;
     [SerializeField] private Rigidbody _RigidBody;
-    [SerializeField] private GameSessionManager _GameSessionManager;
+    [SerializeField] public GameSessionManager _GameSessionManager;
 
     private void Start() 
     {   
@@ -19,7 +19,7 @@ public class VehicleObstacle : MonoBehaviour
         _VehicleSpeed = _GameSessionManager.GetVehicleSpeed();
         Vector3 _Velocity = _RigidBody.velocity;
 
-        _Velocity = (Vector3.forward * _VehicleSpeed * Time.deltaTime);
+        _Velocity = (Vector3.forward * _VehicleSpeed * Time.deltaTime);        
 
         _RigidBody.velocity = _Velocity;
     }
